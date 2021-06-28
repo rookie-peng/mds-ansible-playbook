@@ -11,3 +11,6 @@
 
 - name: Include pushgateway tasks.
   include: 'pushgateway.yml'
+
+- name: Include pushgateway-flink tasks.
+  include: 'pushgateway-flink.yml'

@@ -19,7 +19,6 @@ grafana_vm_data_path: /data/grafana
 
 
 
-
 ###################################################  alertmanager ##########################
 alertmanager_image: prom/alertmanager:v0.18.0
 alertmanager_ac_image: registry.rootcloudapp.com/alert-controller:v1.1
@@ -31,14 +30,19 @@ alertmanager_vm_data_path: /data/alertmanager
 
 
 
-
 ###################################################  pushgateway  ##########################
 pushgateway_image: dmathai/prom-pushgateway-ttl:latest
 pushgateway_tolerate_key: mds
 pushgateway_nodeselector_key: zone
 pushgateway_nodeselector_value: mds
-pushgateway_vm_data_path: /data/pushgateway
 
+
+
+###################################################  pushgateway-flink  ##########################
+pushgateway-flink_image: dmathai/prom-pushgateway-ttl:latest
+pushgateway-flink_tolerate_key: mds
+pushgateway-flink_nodeselector_key: zone
+pushgateway-flink_nodeselector_value: mds
 
 
 ##################################################  mds-app ################################

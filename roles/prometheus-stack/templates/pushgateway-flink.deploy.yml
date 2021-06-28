@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    component: "pushgateway-flink"
+    app: pushgateway-flink
+    release: mds-mds
+    chart: prometheus-9.3.1
+    heritage: Tiller
+  name: pushgateway-flink
+  namespace: {{ prometheus_stack_namespace }}
+spec:
+  selector:
+    matchLabels:
+      component: "pushgateway-flink"
+      app: pushgateway-flink
+      release: mds-mds
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: "pushgateway-flink"
+        app: pushgateway-flink
+        release: mds-mds
+        chart: prometheus-9.3.1
+        heritage: Tiller
+    spec:
+      serviceAccountName: pushgateway-flink
+      containers:
+        - name: pushgateway-flink
+          image: {{ pushgateway-flink_image }}
+          imagePullPolicy: "IfNotPresent"
+          args:
+          ports:
+            - containerPort: 9091
+          readinessProbe:
+            httpGet:
+              path: /#/status
+              port: 9091
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          resources:
+            {}
+      nodeSelector:
+        {{ pushgateway-flink_nodeselector_key }}: {{ pushgateway-flink_nodeselector_value }}
+      tolerations:
+        - key: {{ pushgateway-flink_tolerate_key }}
+          operator: Exists
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+

@@ -1,0 +1,20 @@
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  labels:
+    component: "pushgateway-flink"
+    app: prometheus-flink
+    release: mds-mds
+    chart: prometheus-9.3.1
+    heritage: Tiller
+  name: pushgateway-flink
+subjects:
+  - kind: ServiceAccount
+    name: pushgateway-flink
+    namespace: {{ prometheus_stack_namespace }}
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: pushgateway-flink
+
+

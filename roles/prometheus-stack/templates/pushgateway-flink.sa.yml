@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    component: "pushgateway-flink"
+    app: prometheus-flink
+    release: mds-mds
+    chart: prometheus-9.3.1
+    heritage: Tiller
+  name: pushgateway-flink
+  namespace: {{ prometheus_stack_namespace }}
