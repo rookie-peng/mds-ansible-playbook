@@ -1,3 +1,4 @@
 ---
 # defaults file for common
-mds_namespace: mds
+prometheus_stack_namespace: mds
+image_pull_secret: regsecret

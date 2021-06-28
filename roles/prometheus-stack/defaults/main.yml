@@ -50,12 +50,6 @@ pushgateway_flink_nodeselector_value: mds
 pushgateway_flink_state: present
 
 
-##################################################  mds-app ################################
-
-
-
-
-
 
 ##################################################  common ################################
 image_pull_secret: regsecret

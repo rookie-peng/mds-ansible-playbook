@@ -1,0 +1,23 @@
+---
+- hosts: localhost
+  serial: 5
+  gather_facts: no
+  remote_user: root
+  vars_files:
+    - vars.yml
+
+  pre_tasks:
+    - name: some init actions |
+      include_role:
+        name: 'common'
+    
+    - name: wait for system to become reachable |
+      wait_for_connection:
+        delay: '5'
+        timeout: '90'
+      
+  roles:
+    - { role: prometheus-stack,     tags: ['prometheus-stack'],     when: prometheus_stack_is_install | bool }
+   # - { role: mds-app,        when: mds-app_is_install | bool }
+   # - { role: graylog,   when: graylog_is_install | bool }
+ 

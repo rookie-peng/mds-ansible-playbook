@@ -19,3 +19,7 @@
       provisioner: kubernetes.io/no-provisioner
       volumeBindingMode: WaitForFirstConsumer
 
+- name: Create image pull secrets
+  k8s:
+    state: present
+    definition: "{{ lookup('template', 'image.secret.yml') | from_yaml }}"
