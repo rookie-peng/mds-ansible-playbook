@@ -1,0 +1,21 @@
+---
+# tasks file for common
+- name: Create mds namespace
+  k8s: 
+    name: '{{ prometheus_stack_namespace }}'
+    api_version: v1
+    kind: Namespace
+    state: present
+
+- name: Create storageclass
+  k8s: 
+    state: present
+    definition:
+      apiVersion: storage.k8s.io/v1
+      kind: StorageClass
+      metadata:
+        name: prometheus-storage
+        namespace:
+      provisioner: kubernetes.io/no-provisioner
+      volumeBindingMode: WaitForFirstConsumer
+

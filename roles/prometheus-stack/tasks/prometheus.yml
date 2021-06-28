@@ -1,0 +1,23 @@
+- name: prometheus | Create a service for prometheus 
+  k8s: 
+    state: present
+    definition: "{{ lookup('template', 'prometheus.svc.yml') | from_yaml }}"
+
+- name: prometheus | Create a configmap for prometheus 
+  k8s: 
+    state: present
+    definition: "{{ lookup('template', 'prometheus.cm.yml') | from_yaml }}"
+
+- name: prometheus | Create a rbac for prometheus 
+  k8s: 
+    state: present
+    definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
+  with_items:
+    - prometheus.sa.yml
+    - prometheus.clusterrolebinding.yml
+    - prometheus.clusterrole.yml
+
+- name: prometheus | Create a statefulset for prometheus 
+  k8s: 
+    state: present
+    definition: "{{ lookup('template', 'prometheus.sts.yml') | from_yaml }}"

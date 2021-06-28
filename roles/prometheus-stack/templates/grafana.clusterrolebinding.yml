@@ -1,0 +1,18 @@
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: grafana-clusterrolebinding
+  labels:
+    app: grafana
+    chart: grafana-4.0.2
+    release: mds-mds
+    heritage: Tiller
+subjects:
+  - kind: ServiceAccount
+    name: grafana
+    namespace: {{ prometheus_stack_namespace }}
+roleRef:
+  kind: ClusterRole
+  name: grafana-clusterrole
+  apiGroup: rbac.authorization.k8s.io
+

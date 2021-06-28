@@ -1,0 +1,10 @@
+- hosts: localhost
+  tasks:
+    - name: Create a k8s namespace
+      vars: 
+        namespace: mds
+      k8s:
+        name: '{{ namespace }}'
+        api_version: v1
+        kind: Namespace
+        state: present

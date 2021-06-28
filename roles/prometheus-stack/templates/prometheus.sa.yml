@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    component: "server"
+    app: prometheus
+    release: mds-mds
+  name: prometheus
+  namespace: {{ prometheus_stack_namespace }}
+

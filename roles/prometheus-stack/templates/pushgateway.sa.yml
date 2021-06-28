@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    component: "pushgateway"
+    app: prometheus
+    release: mds-mds
+    chart: prometheus-9.3.1
+    heritage: Tiller
+  name: mds-prometheus-pushgateway
+  namespace: {{ prometheus_stack_namespace }}

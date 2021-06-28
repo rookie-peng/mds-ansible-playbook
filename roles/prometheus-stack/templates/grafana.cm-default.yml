@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-dashboards-default
+  namespace: {{ prometheus_stack_namespace }}
+  labels:
+    app: grafana
+    chart: grafana-4.0.2
+    release: mds-mds
+    heritage: Tiller
+    dashboard-provider: default
+data:
+  {}
+

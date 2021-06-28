@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    app: grafana
+    chart: grafana-4.0.2
+    heritage: Tiller
+    release: mds-mds
+  name: grafana
+  namespace: {{ prometheus_stack_namespace }}
+

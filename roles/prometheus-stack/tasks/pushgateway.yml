@@ -1,0 +1,18 @@
+- name: pushgateway  | Create a service for pushgateway 
+  k8s: 
+    state: present
+    definition: "{{ lookup('template', 'pushgateway.svc.yml') | from_yaml }}"
+
+- name: pushgateway | Create a rbac for pushgateway 
+  k8s: 
+    state: present
+    definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
+  with_items:
+    - pushgateway.sa.yml
+    - pushgateway.clusterrolebinding.yml
+    - pushgateway.clusterrole.yml
+
+- name: pushgateway | Create a deployment for pushgateway 
+  k8s: 
+    state: present
+    definition: "{{ lookup('template', 'pushgateway.deploy.yml') | from_yaml }}"

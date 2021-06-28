@@ -1,0 +1,21 @@
+# Source: mds/charts/grafana/templates/pvc.yaml
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana
+  namespace: {{ prometheus_stack_namespace }}
+  labels:
+    app: grafana
+    chart: grafana-4.0.2
+    release: mds-mds
+    heritage: Tiller
+  finalizers:
+    - kubernetes.io/pvc-protection
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "20Gi"
+  storageClassName: prometheus-storage
+

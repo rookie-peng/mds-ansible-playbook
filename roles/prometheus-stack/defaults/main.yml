@@ -1,0 +1,53 @@
+---
+# defaults file for prometheus-stack
+
+####################################################  prometheus  ###########################
+prometheus_image: prom/prometheus:v2.13.1
+prometheus_ac_image: registry.rootcloudapp.com/alert-controller:v1.1
+prometheus_tolerate_key: mds
+prometheus_nodeselector_key: zone
+prometheus_nodeselector_value: mds
+prometheus_vm_data_path: /data/prometheus
+
+
+####################################################  grafana  ##############################
+grafana_image: grafana/grafana:6.4.2
+grafana_tolerate_key: mds
+grafana_nodeselector_key: zone
+grafana_nodeselector_value: mds
+grafana_vm_data_path: /data/grafana
+
+
+
+
+###################################################  alertmanager ##########################
+alertmanager_image: prom/alertmanager:v0.18.0
+alertmanager_ac_image: registry.rootcloudapp.com/alert-controller:v1.1
+alertmanager_tolerate_key: mds
+alertmanager_nodeselector_key: zone
+alertmanager_nodeselector_value: mds
+alertmanager_webhook: http://devops-web.xxxxxxxxxx/devops/mds/alarm/history/send
+alertmanager_vm_data_path: /data/alertmanager
+
+
+
+
+###################################################  pushgateway  ##########################
+pushgateway_image: dmathai/prom-pushgateway-ttl:latest
+pushgateway_tolerate_key: mds
+pushgateway_nodeselector_key: zone
+pushgateway_nodeselector_value: mds
+pushgateway_vm_data_path: /data/pushgateway
+
+
+
+##################################################  mds-app ################################
+
+
+
+
+
+
+##################################################  common ################################
+image_pull_secret: regsecret
+prometheus_stack_namespace: mds

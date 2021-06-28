@@ -1,0 +1,13 @@
+---
+# tasks file for prometheus-stack
+- name: Include prometheus tasks.
+  include: 'prometheus.yml'
+
+- name: Include grafana tasks.
+  include: 'grafana.yml'
+
+- name: Include alertmanager tasks.
+  include: 'alertmanager.yml'
+
+- name: Include pushgateway tasks.
+  include: 'pushgateway.yml'

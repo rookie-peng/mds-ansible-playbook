@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    component: "pushgateway"
+    app: prometheus
+    release: mds-mds
+    chart: prometheus-9.3.1
+    heritage: Tiller
+  name: mds-prometheus-pushgateway
+  namespace: {{ prometheus_stack_namespace }}
+spec:
+  selector:
+    matchLabels:
+      component: "pushgateway"
+      app: prometheus
+      release: mds-mds
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        component: "pushgateway"
+        app: prometheus
+        release: mds-mds
+        chart: prometheus-9.3.1
+        heritage: Tiller
+    spec:
+      serviceAccountName: mds-prometheus-pushgateway
+      containers:
+        - name: prometheus-pushgateway
+          image: {{ pushgateway_image }}
+          imagePullPolicy: "IfNotPresent"
+          args:
+          ports:
+            - containerPort: 9091
+          readinessProbe:
+            httpGet:
+              path: /#/status
+              port: 9091
+            initialDelaySeconds: 10
+            timeoutSeconds: 10
+          resources:
+            {}
+      nodeSelector:
+        {{ pushgateway_nodeselector_key }}: {{ pushgateway_nodeselector_value }}
+      tolerations:
+        - key: {{ pushgateway_tolerate_key }}
+          operator: Exists
+      securityContext:
+        runAsNonRoot: false
+        runAsUser: 0
+
