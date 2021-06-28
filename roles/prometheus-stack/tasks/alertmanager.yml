@@ -1,18 +1,18 @@
 - name: alertmanager  | Create a service for alertmanager 
   k8s: 
-    state: present
+    state: "{{ alertmanager_state }}"
     definition: "{{ lookup('template', 'alertmanager.svc.yml') | from_yaml }}"
 
 - name: alertmanager | Create a configmap for alertmanager 
   k8s: 
-    state: present
+    state: "{{ alertmanager_state }}"
     definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
   with_items:
     - alertmanager.cm.yml
 
 - name: alertmanager | Create a rbac for alertmanager 
   k8s: 
-    state: present
+    state: "{{ alertmanager_state }}"
     definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
   with_items:
     - alertmanager.sa.yml
@@ -21,7 +21,7 @@
 
 - name: alertmanager | Create a pv and pvc  for alertmanager 
   k8s: 
-    state: present
+    state: "{{ alertmanager_state }}"
     definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
   with_items:
     - alertmanager.pv.yml
@@ -29,5 +29,5 @@
 
 - name: alertmanager | Create a deployment for alertmanager 
   k8s: 
-    state: present
+    state: "{{ alertmanager_state }}"
     definition: "{{ lookup('template', 'alertmanager.deploy.yml') | from_yaml }}"

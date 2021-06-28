@@ -1,11 +1,11 @@
 - name: pushgateway-flink  | Create a service for pushgateway-flink 
   k8s: 
-    state: present
+    state: "{{ pushgateway_flink_state }}"
     definition: "{{ lookup('template', 'pushgateway-flink.svc.yml') | from_yaml }}"
 
 - name: pushgateway-flink | Create a rbac for pushgateway-flink 
   k8s: 
-    state: present
+    state: "{{ pushgateway_flink_state }}"
     definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
   with_items:
     - pushgateway-flink.sa.yml
@@ -14,5 +14,5 @@
 
 - name: pushgateway-flink | Create a deployment for pushgateway-flink 
   k8s: 
-    state: present
+    state: "{{ pushgateway_flink_state }}"
     definition: "{{ lookup('template', 'pushgateway-flink.deploy.yml') | from_yaml }}"

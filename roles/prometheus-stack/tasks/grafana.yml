@@ -1,11 +1,11 @@
 - name: grafana  | Create a service for grafana 
   k8s: 
-    state: present
+    state: "{{ grafana_state }}"
     definition: "{{ lookup('template', 'grafana.svc.yml') | from_yaml }}"
 
 - name: grafana | Create a configmap for grafana 
   k8s: 
-    state: present
+    state: "{{ grafana_state }}"
     definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
   with_items:
     - grafana.cm.yml
@@ -13,12 +13,12 @@
 
 - name: grafana | Create a secret for grafana 
   k8s: 
-    state: present
+    state: "{{ grafana_state }}"
     definition: "{{ lookup('template', 'grafana.secret.yml') | from_yaml }}"
 
 - name: grafana | Create a rbac for grafana 
   k8s: 
-    state: present
+    state: "{{ grafana_state }}"
     definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
   with_items:
     - grafana.sa.yml
@@ -29,7 +29,7 @@
 
 - name: grafana | Create a pv and pvc  for grafana 
   k8s: 
-    state: present
+    state: "{{ grafana_state }}"
     definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
   with_items:
     - grafana.pv.yml
@@ -37,5 +37,5 @@
 
 - name: grafana | Create a deployment for grafana 
   k8s: 
-    state: present
+    state: "{{ grafana_state }}"
     definition: "{{ lookup('template', 'grafana.deploy.yml') | from_yaml }}"

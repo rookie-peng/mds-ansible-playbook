@@ -28,7 +28,7 @@ spec:
       serviceAccountName: pushgateway-flink
       containers:
         - name: pushgateway-flink
-          image: {{ pushgateway-flink_image }}
+          image: {{ pushgateway_flink_image }}
           imagePullPolicy: "IfNotPresent"
           args:
           ports:
@@ -42,9 +42,9 @@ spec:
           resources:
             {}
       nodeSelector:
-        {{ pushgateway-flink_nodeselector_key }}: {{ pushgateway-flink_nodeselector_value }}
+        {{ pushgateway_flink_nodeselector_key }}: {{ pushgateway_flink_nodeselector_value }}
       tolerations:
-        - key: {{ pushgateway-flink_tolerate_key }}
+        - key: {{ pushgateway_flink_tolerate_key }}
           operator: Exists
       securityContext:
         runAsNonRoot: false
