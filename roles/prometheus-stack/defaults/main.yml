@@ -3,7 +3,7 @@
 
 ####################################################  prometheus  ###########################
 prometheus_image: prom/prometheus:v2.13.1
-prometheus_ac_image: registry.rootcloudapp.com/alert-controller:v1.1
+prometheus_ac_image: private-registry.rootcloud.com/mds/alert-controller:v1.1
 prometheus_tolerate_key: mds
 prometheus_nodeselector_key: zone
 prometheus_nodeselector_value: mds
@@ -23,7 +23,7 @@ grafana_state: present
 
 ###################################################  alertmanager ##########################
 alertmanager_image: prom/alertmanager:v0.18.0
-alertmanager_ac_image: registry.rootcloudapp.com/alert-controller:v1.1
+alertmanager_ac_image: private-registry.rootcloud.com/mds/alert-controller:v1.1
 alertmanager_tolerate_key: mds
 alertmanager_nodeselector_key: zone
 alertmanager_nodeselector_value: mds
