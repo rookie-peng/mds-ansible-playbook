@@ -12,7 +12,7 @@ prometheus_state: present
 
 
 ####################################################  grafana  ##############################
-grafana_image: grafana/grafana:6.4.2
+grafana_image: grafana/grafana:7.5.7
 grafana_tolerate_key: mds
 grafana_nodeselector_key: zone
 grafana_nodeselector_value: mds
