@@ -1,0 +1,33 @@
+- name: devops-gateway  | Create a service for grafana 
+  k8s: 
+    state: "{{ devops_gateway_state }}"
+    definition: "{{ lookup('template', 'devops-gateway.svc.yml') | from_yaml }}"
+
+- name: grafana | Create a configmap for grafana 
+  k8s: 
+    state: "{{ devops_gateway_state }}"
+    definition: "{{ lookup('template', '{{ devpos-gateway.deploy.yml }}') | from_yaml }}"
+
+- name: grafana | Create a rbac for grafana 
+  k8s: 
+    state: "{{ grafana_state }}"
+    definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
+  with_items:
+    - grafana.sa.yml
+    - grafana.clusterrolebinding.yml
+    - grafana.clusterrole.yml
+    - grafana.role.yml
+    - grafana.rolebinding.yml
+
+- name: grafana | Create a pv and pvc  for grafana 
+  k8s: 
+    state: "{{ grafana_state }}"
+    definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
+  with_items:
+    - grafana.pv.yml
+    - grafana.pvc.yml
+
+- name: grafana | Create a deployment for grafana 
+  k8s: 
+    state: "{{ grafana_state }}"
+    definition: "{{ lookup('template', 'grafana.deploy.yml') | from_yaml }}"

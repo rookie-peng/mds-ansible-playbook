@@ -1,2 +1,22 @@
----
-# defaults file for mds-app
+##################################################  devops-gateway  ###########################
+prometheus_image: prom/prometheus:v2.13.1
+prometheus_ac_image: registry.rootcloudapp.com/alert-controller:v1.1
+devops_gateway_tolerate_key: mds
+devops_gateway_nodeselector_key: zone
+devops_gateway_nodeselector_value: mds
+prometheus_state: present
+rometheus_stack_is_install: true
+
+
+####################################################  devops-web  ##############################
+grafana_image: grafana/grafana:7.5.7
+grafana_tolerate_key: mds
+grafana_nodeselector_key: zone
+grafana_nodeselector_value: mds
+grafana_vm_data_path: /data/grafana
+grafana_state: present
+
+
+####################################################  common  ##############################
+mds_app_namespace: mds
+

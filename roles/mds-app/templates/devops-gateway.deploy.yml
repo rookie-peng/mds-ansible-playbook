@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-gateway
+  namespace: {{ mds_app_namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: devops-gateway
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: devops-gateway
+    spec:
+      nodeSelector:
+        {{ prometheus_nodeselector_key }}: {{ prometheus_nodeselector_value }}
+      tolerations:
+        - key: {{ devops_gateway_tolerate_key }}
+          operator: Exists
+      containers:
+      - env:
+        - name: JAVA_OPTS
+          value: -Xmx512m
+        envFrom:
+        - configMapRef:
+            name: devops-cnfmap
+        image: private-registry.rootcloud.com/operations/devops-gateway:master_7a314bf9_20200923-140330
+        imagePullPolicy: IfNotPresent
+        name: devops-gateway
+        resources:
+          limits:
+            cpu: 500m
+            memory: 512Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+
