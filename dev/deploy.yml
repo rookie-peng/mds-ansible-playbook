@@ -4,7 +4,8 @@
   gather_facts: no
   remote_user: root
   vars_files:
-    - vars.yml
+    - prometheus-stack-vars.yml
+    - mds-app-vars.yml
 
   pre_tasks:
     - name: some init actions |
@@ -18,6 +19,6 @@
       
   roles:
     - { role: prometheus-stack,     tags: ['prometheus-stack'],     when: prometheus_stack_is_install | bool }
-   # - { role: mds-app,        when: mds-app_is_install | bool }
+    - { role: mds-app,              tags: ['mds-app'],               when: mds_app_is_install | bool }
    # - { role: graylog,   when: graylog_is_install | bool }
  

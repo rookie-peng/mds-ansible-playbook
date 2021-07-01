@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-system
+  namespace: {{ mds_app_namespace }}
+spec:
+  selector:
+    matchLabels:
+      app: devops-system
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: devops-system
+    spec:
+      nodeSelector:
+        {{ devops_system_nodeselector_key }}: {{ devops_system_nodeselector_value }}
+      tolerations:
+        - key: {{ devops_system_tolerate_key }}
+          operator: Exists
+      containers:
+      - env:
+        - name: JAVA_OPTS
+          value: -Xmx1000m
+        envFrom:
+        - configMapRef:
+            name: devops-cnfmap
+        image: {{ devops_system_image }}
+        imagePullPolicy: IfNotPresent
+        name: devops-system
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1024Mi
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+

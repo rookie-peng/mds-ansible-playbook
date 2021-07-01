@@ -3,7 +3,7 @@
 - name: create configmap  | Create a configmap for devops-apps
   k8s:
     state: "{{ mds_app_state }}"
-    definition: "{{ lookup('template', 'devpos-app.cm.yml') | from_yaml }}"
+    definition: "{{ lookup('template', 'devops-app.cm.yml') | from_yaml }}"
 
 - name: Include devops-gateway tasks.
   include: 'devops-gateway.yml'
