@@ -1,2 +1,21 @@
 ---
 # tasks file for mds-app
+- name: create configmap  | Create a configmap for devops-apps
+  k8s:
+    state: "{{ mds_app_state }}"
+    definition: "{{ lookup('template', 'devpos-app.cm.yml') | from_yaml }}"
+
+- name: Include devops-gateway tasks.
+  include: 'devops-gateway.yml'
+
+- name: Include devops-web tasks.
+  include: 'devops-web.yml'
+
+- name: Include devops-eureka tasks.
+  include: 'devops-eureka.yml'
+
+- name: Include devops-mds tasks.
+  include: 'devops-mds.yml'
+
+- name: Include devops-system tasks.
+  include: 'devops-system.yml'

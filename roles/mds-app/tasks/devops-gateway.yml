@@ -1,10 +1,11 @@
 - name: devops-gateway  | Create a service for devops-gateway
   k8s: 
-    state: "{{ devops_gateway_state }}"
+    state: "{{ mds_app_state }}"
     definition: "{{ lookup('template', 'devops-gateway.svc.yml') | from_yaml }}"
 
 - name: devops-gateway  | Create a deploy for devops-gateway
   k8s: 
-    state: "{{ devops_gateway_state }}"
+    state: "{{ mds_app_state }}"
     definition: "{{ lookup('template', 'devpos-gateway.deploy.yml') | from_yaml }}"
+
 

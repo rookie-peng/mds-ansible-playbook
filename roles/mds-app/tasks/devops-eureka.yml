@@ -1,0 +1,11 @@
+- name: devops-eureka  | Create a service for devops-eureka
+  k8s: 
+    state: "{{ mds_app_state }}"
+    definition: "{{ lookup('template', 'devops-eureka.svc.yml') | from_yaml }}"
+
+- name: devops-eureka  | Create a deploy for devops-eureka
+  k8s: 
+    state: "{{ mds_app_state }}"
+    definition: "{{ lookup('template', 'devops-eureka.deploy.yml') | from_yaml }}"
+
+

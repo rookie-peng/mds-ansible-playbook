@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-eureka
+  namespace: {{ mds_app_namespace }}
+spec:
+  ports:
+  - name: tcp-80-80
+    port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: devops-eureka
+  sessionAffinity: None
+  type: ClusterIP
+

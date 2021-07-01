@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: devops-gateway
+  name: devops-eureka
   namespace: {{ mds_app_namespace }}
 spec:
   selector:
     matchLabels:
-      app: devops-gateway
+      app: devops-eureka
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: devops-gateway
+        app: devops-eureka
     spec:
       nodeSelector:
-        {{ devops_gateway_nodeselector_key }}: {{ devops_gateway_nodeselector_value }}
+        {{ devops_eureka_nodeselector_key }}: {{ devops_eureka_nodeselector_value }}
       tolerations:
-        - key: {{ devops_gateway_tolerate_key }}
+        - key: {{ devops_eureka_tolerate_key }}
           operator: Exists
       containers:
       - env:
@@ -25,9 +25,9 @@ spec:
         envFrom:
         - configMapRef:
             name: devops-cnfmap
-        image: {{ devops_gateway_image }}
+        image: {{ devops_eureka_image }}
         imagePullPolicy: IfNotPresent
-        name: devops-gateway
+        name: devops-eureka
         resources:
           limits:
             cpu: 500m

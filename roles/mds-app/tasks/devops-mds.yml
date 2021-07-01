@@ -1,0 +1,11 @@
+- name: devops-mds  | Create a service for devops-mds
+  k8s: 
+    state: "{{ mds_app_state }}"
+    definition: "{{ lookup('template', 'devops-mds.svc.yml') | from_yaml }}"
+
+- name: devops-mds  | Create a deploy for devops-mds
+  k8s: 
+    state: "{{ mds_app_state }}"
+    definition: "{{ lookup('template', 'devops-mds.deploy.yml') | from_yaml }}"
+
+
