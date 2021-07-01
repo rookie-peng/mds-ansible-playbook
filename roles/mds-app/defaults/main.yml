@@ -35,5 +35,6 @@ devops_system_nodeselector_value: mds
 
 ####################################################  common  ##############################
 mds_app_namespace: mds
+image_pull_secret: regsecret
 mds_app_state: present
 

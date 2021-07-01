@@ -38,5 +38,6 @@ mds_app_is_install: true
 #
 #####################################################  common  ##############################
 #mds_app_namespace: mds
+#image_pull_secret: regsecret
 #mds_app_state: present
 
