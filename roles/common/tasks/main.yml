@@ -1,5 +1,9 @@
 ---
 # tasks file for common
+- name: Taint node and Label node 
+  shell: kubectl taint  node {{ node }} {{ tolerate_key }}=:NoSchedule --overwrite &&
+         kubectl label  node {{ node }} {{ nodeselector_key }}={{ nodeselector_value }} --overwrite
+
 - name: Create mds namespace
   k8s: 
     name: '{{ prometheus_stack_namespace }}'

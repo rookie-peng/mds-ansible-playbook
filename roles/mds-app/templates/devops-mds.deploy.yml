@@ -14,9 +14,9 @@ spec:
         app: devops-mds
     spec:
       nodeSelector:
-        {{ devops_mds_nodeselector_key }}: {{ devops_mds_nodeselector_value }}
+        {{ nodeselector_key }}: {{ nodeselector_value }}
       tolerations:
-        - key: {{ devops_mds_tolerate_key }}
+        - key: {{ tolerate_key }}
           operator: Exists
       containers:
       - env:

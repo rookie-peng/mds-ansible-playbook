@@ -1,40 +1,28 @@
 ##################################################  devops-gateway  ###########################
 devops_gateway_image: private-registry.rootcloud.com/operations/devops-gateway:master_7a314bf9_20200923-140330
-devops_gateway_tolerate_key: mds
-devops_gateway_nodeselector_key: zone
-devops_gateway_nodeselector_value: mds
 
 
 ####################################################  devops-web  ##############################
 devops_web_image: private-registry.rootcloud.com/cicd/devops-web:master_7b5e668_20200930-090114
-devops_web_tolerate_key: mds
-devops_web_nodeselector_key: zone
-devops_web_nodeselector_value: mds
 
 
 ####################################################  devops-mds  ##############################
 devops_mds_image: private-registry.rootcloud.com/cicd/devops-mds:master_de4313d_20201019-200046
-devops_mds_tolerate_key: mds
-devops_mds_nodeselector_key: zone
-devops_mds_nodeselector_value: mds
 
 
 ####################################################  devops-eureka  ##############################
 devops_eureka_image: private-registry.rootcloud.com/operations/devops-eureka:master_a9b343a_20200909-180844
-devops_eureka_tolerate_key: mds
-devops_eureka_nodeselector_key: zone
-devops_eureka_nodeselector_value: mds
 
 
 ####################################################  devops-system  ##############################
 devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
-devops_system_tolerate_key: mds
-devops_system_nodeselector_key: zone
-devops_system_nodeselector_value: mds
 
 
 ####################################################  common  ##############################
 mds_app_namespace: mds
 image_pull_secret: regsecret
 mds_app_state: present
+tolerate_key: mds
+nodeselector_key: zone
+nodeselector_value: mds
 

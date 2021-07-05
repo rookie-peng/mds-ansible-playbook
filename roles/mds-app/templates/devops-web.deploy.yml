@@ -14,9 +14,9 @@ spec:
         app: devops-web
     spec:
       nodeSelector:
-        {{ devops_web_nodeselector_key }}: {{ devops_web_nodeselector_value }}
+        {{ nodeselector_key }}: {{ nodeselector_value }}
       tolerations:
-        - key: {{ devops_web_tolerate_key }}
+        - key: {{ tolerate_key }}
           operator: Exists
       containers:
       - env:

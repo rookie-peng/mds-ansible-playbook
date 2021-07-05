@@ -14,9 +14,9 @@ spec:
         app: devops-system
     spec:
       nodeSelector:
-        {{ devops_system_nodeselector_key }}: {{ devops_system_nodeselector_value }}
+        {{ nodeselector_key }}: {{ nodeselector_value }}
       tolerations:
-        - key: {{ devops_system_tolerate_key }}
+        - key: {{ tolerate_key }}
           operator: Exists
       containers:
       - env:

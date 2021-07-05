@@ -2,3 +2,6 @@
 # defaults file for common
 prometheus_stack_namespace: mds
 image_pull_secret: regsecret
+tolerate_key: mds
+nodeselector_key: zone
+nodeselector_value: mds

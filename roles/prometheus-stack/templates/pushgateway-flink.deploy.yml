@@ -42,9 +42,9 @@ spec:
           resources:
             {}
       nodeSelector:
-        {{ pushgateway_flink_nodeselector_key }}: {{ pushgateway_flink_nodeselector_value }}
+        {{ nodeselector_key }}: {{ nodeselector_value }}
       tolerations:
-        - key: {{ pushgateway_flink_tolerate_key }}
+        - key: {{ tolerate_key }}
           operator: Exists
       securityContext:
         runAsNonRoot: false

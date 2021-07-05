@@ -83,7 +83,7 @@ spec:
       imagePullSecrets:
         - name: {{ image_pull_secret }}
       nodeSelector:
-        {{ alertmanager_nodeselector_key }}: {{ alertmanager_nodeselector_value }}
+        {{ nodeselector_key }}: {{ nodeselector_value }}
 
       securityContext:
         fsGroup: 65534
@@ -91,7 +91,7 @@ spec:
         runAsNonRoot: true
         runAsUser: 65534
       tolerations:
-        - key: {{ alertmanager_tolerate_key }}
+        - key: {{ tolerate_key }}
           operator: Exists
 
       volumes:

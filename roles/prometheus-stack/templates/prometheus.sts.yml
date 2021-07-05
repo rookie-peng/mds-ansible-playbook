@@ -27,7 +27,7 @@ spec:
     spec:
       serviceAccountName: prometheus
       tolerations:
-        - key: {{ prometheus_tolerate_key }}
+        - key: {{ tolerate_key }}
           operator: Exists
       containers:
         - name: prometheus-server-ac
@@ -91,7 +91,7 @@ spec:
       imagePullSecrets:
         - name: {{ image_pull_secret }}
       nodeSelector:
-        {{ prometheus_nodeselector_key }}: {{ prometheus_nodeselector_value }}
+        {{ nodeselector_key }}: {{ nodeselector_value }}
       securityContext:
         fsGroup: 65534
         runAsGroup: 65534

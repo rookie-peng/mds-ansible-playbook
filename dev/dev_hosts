@@ -1,2 +1,4 @@
 [mds-node]
-10.66.216.24
+dev-node18
+[all:vars]
+node=dev-node18

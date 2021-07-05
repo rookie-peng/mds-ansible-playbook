@@ -14,9 +14,9 @@ spec:
         app: devops-eureka
     spec:
       nodeSelector:
-        {{ devops_eureka_nodeselector_key }}: {{ devops_eureka_nodeselector_value }}
+        {{ nodeselector_key }}: {{ nodeselector_value }}
       tolerations:
-        - key: {{ devops_eureka_tolerate_key }}
+        - key: {{ tolerate_key }}
           operator: Exists
       containers:
       - env:
