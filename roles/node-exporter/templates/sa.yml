@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    component: "node-exporter"
+    app: prometheus
+    release: mds-mds
+    chart: prometheus-9.3.1
+    heritage: Tiller
+  name: mds-mds-prometheus-node-exporter
+  namespace: {{ exporter_namespace }}
+
