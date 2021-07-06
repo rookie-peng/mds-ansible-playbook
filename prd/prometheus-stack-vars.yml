@@ -1,0 +1,43 @@
+prometheus_stack_is_install: true
+
+
+####################################################  prometheus  ###########################
+#prometheus_image: prom/prometheus:v2.13.1
+#prometheus_ac_image: registry.rootcloudapp.com/alert-controller:v1.1
+#prometheus_vm_data_path: /data/prometheus
+#prometheus_state: present
+
+
+#####################################################  grafana  ##############################
+#grafana_image: grafana/grafana:7.5.7
+#grafana_vm_data_path: /data/grafana
+#grafana_state: present
+
+
+
+####################################################  alertmanager ##########################
+#alertmanager_image: prom/alertmanager:v0.18.0
+#alertmanager_ac_image: registry.rootcloudapp.com/alert-controller:v1.1
+#alertmanager_webhook: http://devops-web.xxxxxxxxxx/devops/mds/alarm/history/send
+#alertmanager_vm_data_path: /data/alertmanager
+#alertmanager_state: present
+
+
+
+####################################################  pushgateway  ##########################
+#pushgateway_image: dmathai/prom-pushgateway-ttl:latest
+#pushgateway_state: present
+
+
+
+####################################################  pushgateway-flink  ##########################
+#pushgateway_flink_image: dmathai/prom-pushgateway-ttl:latest
+#pushgateway_flink_state: present
+
+
+###################################################  common ################################
+#image_pull_secret: regsecret
+#prometheus_stack_namespace: mds
+#tolerate_key: mds
+#nodeselector_key: zone
+#nodeselector_value: mds
