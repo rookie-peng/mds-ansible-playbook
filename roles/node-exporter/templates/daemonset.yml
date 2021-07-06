@@ -29,7 +29,7 @@ spec:
       serviceAccountName: mds-mds-prometheus-node-exporter
       containers:
         - name: prometheus-node-exporter
-          image: "prom/node-exporter:v0.18.0"
+          image: {{ node_exporter_image }}
           imagePullPolicy: "IfNotPresent"
           args:
             - --path.procfs=/host/proc
@@ -60,7 +60,7 @@ spec:
         operator: Exists
       - key: node-role.kubernetes.io/etcd
         operator: Exists
-      - key: mds
+      - key: {{ tolerate_key }}
         operator: Exists
 
       hostNetwork: true

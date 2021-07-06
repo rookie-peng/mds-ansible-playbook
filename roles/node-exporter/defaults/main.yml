@@ -1,2 +1,5 @@
 ---
 # defaults file for node-exporter
+exporter_namespace: mds
+node_exporter_image: prom/node-exporter:v0.18.0
+tolerate_key: mds

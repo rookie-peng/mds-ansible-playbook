@@ -1,2 +1,6 @@
 ---
 # defaults file for kafka-exporter
+exporter_namespace: mds
+kafka_exporter_image: 
+tolerate_key: mds
+
