@@ -1,0 +1,45 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysqld-exporter-{{ mysqld_ip }}
+  namespace: {{ exporter_namespace }}
+  labels:
+    app.kubernetes.io/name: mysqld-exporter-{{ mysqld_ip }}
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: mysqld-exporter-{{ mysqld_ip }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: mysqld-exporter-{{ mysqld_ip }}
+    spec:
+      nodeSelector:
+        {{ nodeselector_key }}: {{ nodeselector_value }}
+      tolerations:
+        - key: {{ tolerate_key }}
+          operator: Exists
+      containers:
+        - name: exporter
+          image: {{ exporter_image }}
+          env:
+            - name: DATA_SOURCE_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysqld-exporter-{{ mysqld_ip }}
+                  key: data_source_name
+          ports:
+            - name: metrics
+              containerPort: 9104
+          resources:
+            limits:
+              cpu: 50m
+              memory: 100Mi
+            requests:
+              cpu: 10m
+              memory: 20Mi
+

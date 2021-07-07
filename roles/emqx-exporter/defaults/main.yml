@@ -1,2 +1,15 @@
 ---
 # defaults file for emqx-exporter
+exporter_namespace: mds
+exporter_image: private-registry.rootcloud.com/mds/exporters/emq_exporter:pre-1.0.2
+image_pull_secret: regsecret
+tolerate_key: mds
+nodeselector_key: zone
+nodeselector_value: mds
+#admin_password: <emqx-password-secret>
+#env: <env-tag>
+#group: <group-tag>
+#projectCode: <project-tag>
+#emqx_ip: <emqx-ip>
+#emqx_port: <emqx-port>
+

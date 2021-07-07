@@ -1,0 +1,51 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: emqx-exporter
+  namespace: {{ exporter_namespace }}
+  labels:
+    app.kubernetes.io/name: emqx-exporter
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: emqx-exporter
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: emqx-exporter
+    spec:
+      nodeSelector:
+        {{ nodeselector_key }}: {{ nodeselector_value }}
+      tolerations:
+        - key: {{ tolerate_key }}
+          operator: Exists
+      containers:
+        - name: exporter
+          image: {{ exporter_image }}
+          env:
+            - name: EMQ_USERNAME
+              value: "admin"
+            - name: EMQ_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: emqx-exporter
+                  key: admin_password
+          args:
+            - --emq.uri=http://{{ emqx_ip }}:{{ emqx_port }}
+            - --emq.api-version=v3
+          ports:
+            - name: metrics
+              containerPort: 9540
+          resources:
+            limits:
+              cpu: 50m
+              memory: 100Mi
+            requests:
+              cpu: 10m
+              memory: 40Mi
+      imagePullSecrets:
+        - name: {{ image_pull_secret }}
+

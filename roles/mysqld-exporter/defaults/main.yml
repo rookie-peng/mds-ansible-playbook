@@ -1,0 +1,17 @@
+---
+# defaults file for rabbitmq-exporter
+exporter_namespace: mds
+exporter_image: prom/mysqld-exporter:v0.11.0
+#image_pull_secret: regsecret
+tolerate_key: mds
+nodeselector_key: zone
+nodeselector_value: mds
+#admin_password: <mysqld-password-secret>
+#env: <env-tag>
+#group: <group-tag>
+#projectCode: <project-tag>
+#mysqld_ip: <mysqld-ip>
+#mysqld_port: <mysqld-port>
+#user:
+#password:
+#data_source_name: {{ user }}:{{ password }}@{{ mysqld_ip }}:{{ mysqld_port }}

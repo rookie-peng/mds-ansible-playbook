@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-exporter-{{ redis_ip }}
+  namespace: {{ exporter_namespace }}
+  labels:
+    app.kubernetes.io/name: redis-exporter-{{ redis_ip }}
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: redis-exporter-{{ redis_ip }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: redis-exporter-{{ redis_ip }}
+    spec:
+      nodeSelector:
+        {{ nodeselector_key }}: {{ nodeselector_value }}
+      tolerations:
+        - key: {{ tolerate_key  }}
+          operator: Exists
+      containers:
+        - name: exporter
+          image: {{ exporter_image }}
+          imagePullPolicy: "IfNotPresent"
+          env:
+            - name: REDIS_ADDR
+              value: {{ redis_addr }}
+            - name: REDIS_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: redis-exporter-{{ redis_ip }}
+                  key: admin_password
+          ports:
+            - name: metrics
+              containerPort: 9121
+          resources:
+            limits:
+              cpu: 50m
+              memory: 100Mi
+            requests:
+              cpu: 10m
+              memory: 20Mi
+

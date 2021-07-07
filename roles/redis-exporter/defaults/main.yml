@@ -1,2 +1,17 @@
 ---
-# defaults file for redis-exporter
+# defaults file for rabbitmq-exporter
+exporter_namespace: mds
+exporter_image: oliver006/redis_exporter:latest
+#image_pull_secret: regsecret
+tolerate_key: mds
+nodeselector_key: zone
+nodeselector_value: mds
+#admin_password: <redis-password-secret>
+#env: <env-tag>
+#group: <group-tag>
+#projectCode: <project-tag>
+#redis_ip: <redis-ip>
+#redis-port: <redis-port>
+#redis_addr: redis://{{ redis-ip }}:{{ redis-port }}
+
+            

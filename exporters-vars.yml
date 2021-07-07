@@ -1,0 +1,47 @@
+mds_app_is_install: true
+
+
+#####################################################  kafka-exporter    ###########################
+#devops_gateway_image: private-registry.rootcloud.com/operations/devops-gateway:master_7a314bf9_20200923-140330
+
+
+#####################################################  rabbit-exporter  ##############################
+#devops_web_image: private-registry.rootcloud.com/cicd/devops-web:master_7b5e668_20200930-090114
+
+
+#####################################################  node-exporter    ##############################
+#devops_mds_image: private-registry.rootcloud.com/cicd/devops-mds:master_de4313d_20201019-200046
+
+
+#####################################################  emqx-exporter    ##############################
+#devops_eureka_image: private-registry.rootcloud.com/operations/devops-eureka:master_a9b343a_20200909-180844
+
+
+#####################################################  influxdb-exporter     ##############################
+#devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
+
+
+#####################################################  redis-exporter        ##############################
+#devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
+
+
+#####################################################  zookeeper-exporter    ##############################
+#devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
+
+
+#####################################################  mysql-exporter        ##############################
+#devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
+
+
+#####################################################  rocketmq-exporter     ##############################
+#devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
+
+
+#####################################################  common  ##############################
+#mds_app_namespace: mds
+#image_pull_secret: regsecret
+#mds_app_state: present
+#tolerate_key: mds
+#nodeselector_key: zone
+#nodeselector_value: mds
+

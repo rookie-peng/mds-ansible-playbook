@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysqld-exporter-{{ mysqld_ip }}
+  namespace: {{ exporter_namespace }}
+  annotations:
+    prometheus.io/port: "metrics"
+    prometheus.io/scrape: "true"
+  labels:
+    app.kubernetes.io/name: mysqld-exporter-{{ mysqld_ip }}
+    instance: {{ mysqld_ip }}
+    category: DataBase
+    env: {{ env }}
+    group: {{ group }}
+    projectCode: {{ projectCode }}
+    type: MySQL
+spec:
+  type: ClusterIP
+  ports:
+    - name: metrics
+      port: 9104
+      targetPort: metrics
+  selector:
+    app.kubernetes.io/name: mysqld-exporter-{{ mysqld_ip }}
+

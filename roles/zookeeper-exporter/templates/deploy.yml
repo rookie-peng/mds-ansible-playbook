@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: zookeeper-exporter
+  namespace: {{ exporter_namespace }}
+  labels:
+    app.kubernetes.io/name: zookeeper-exporter
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: zookeeper-exporter
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: zookeeper-exporter
+    spec:
+      nodeSelector:
+        {{ nodeselector_key }}: {{ nodeselector_value }}
+      tolerations:
+        - key: {{ tolerate_key }}
+          operator: Exists
+      containers:
+        - name: exporter
+          image: {{ exporter_image }}
+          imagePullPolicy: "IfNotPresent"
+          args:
+#            - -zk-hosts=<zookeeper-ip1>:<zookeeper-port>,<zookeeper-ip2>:<zookeeper-port>,<zookeeper-ip3>:<zookeeper-port>
+            - -zk-hosts=<zk-hosts-list>
+            - -zk-hosts={% for host in zookeeper_ip %}host:{{ zookeeper_port }}
+          ports:
+            - name: metrics
+              containerPort: 9141
+          resources:
+            limits:
+              cpu: 10m
+              memory: 40Mi
+            requests:
+              cpu: 5m
+              memory: 20Mi
+

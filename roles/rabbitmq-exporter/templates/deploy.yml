@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: rabbitmq-exporter
+  namespace: {{ exporter_namespace }}
+  labels:
+    app.kubernetes.io/name: rabbitmq-exporter
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: rabbitmq-exporter
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: rabbitmq-exporter
+    spec:
+      nodeSelector:
+        {{ nodeselector_key }}: {{ nodeselector_value }}
+      tolerations:
+        - key: {{ tolerate_key }}
+          operator: Exists
+      containers:
+      - name: exporter
+        image: {{ exporter_image }}
+        env:
+        - name: RABBIT_URL
+          value: {{ rabbit_url }}
+        - name: RABBIT_USER
+          value: {{ rabbit_user }}
+        - name: RABBIT_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: rabbitmq-exporter
+              key: rabbitmq_password
+        ports:
+        - name: metrics
+          containerPort: 9419
+        resources:
+          limits:
+            cpu: 50m
+            memory: 100Mi
+          requests:
+            cpu: 10m
+            memory: 20Mi
+
