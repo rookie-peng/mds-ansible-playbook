@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: influxdb-exporter-{{ influxdb_ip }}
+  namespace: {{ exporter_namespace }}
+  annotations:
+    prometheus.io/port: "metrics"
+    prometheus.io/scrape: "true"
+  labels:
+    app.kubernetes.io/name: influxdb-exporter-{{ influxdb_ip }}
+    category: DataBase
+    env: {{ env }}
+    instance: {{ influxdb_ip }}
+    group: {{ group }}
+    projectCode: {{ projectCode }}
+    type: Influxdb
+spec:
+  type: ClusterIP
+  ports:
+    - name: metrics
+      port: 9273
+      targetPort: metrics
+  selector:
+    app.kubernetes.io/name: influxdb-exporter-{{ influxdb_ip }}
+

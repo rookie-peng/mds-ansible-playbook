@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: influxdb-exporter-{{ influxdb_ip }}
+  namespace: {{ exporter_namespace }}
+  labels:
+    app.kubernetes.io/name: influxdb-exporter-{{ influxdb_ip }}
+spec:
+  replicas: 1
+  strategy:
+    type: RollingUpdate
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: influxdb-exporter-{{ influxdb_ip }}
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: influxdb-exporter-{{ influxdb_ip }}
+    spec:
+      nodeSelector:
+        {{ nodeselector_key }}: {{ nodeselector_value }}
+      tolerations:
+        - key: {{ tolerate_key }}
+          operator: Exists
+      containers:
+        - name: exporter
+          image: {{ exporter_image }}
+          env:
+            - name: INFLUXDB_ADDR
+              value: {{ influxdb_addr }}
+          ports:
+            - name: metrics
+              containerPort: 9273
+          volumeMounts:
+            - name: config
+              mountPath: /etc/telegraf
+            - name: varrunutmpro
+              mountPath: /var/run/utmp
+              readOnly: true
+          resources:
+            limits:
+              cpu: 50m
+              memory: 100Mi
+            requests:
+              cpu: 25m
+              memory: 50Mi
+      volumes:
+        - name: varrunutmpro
+          hostPath:
+            path: /var/run/utmp
+        - name: config
+          configMap:
+            name: influxdb-exporter-cm-{{ influxdb_ip }}
+

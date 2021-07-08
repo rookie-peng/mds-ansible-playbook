@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: zookeeper-exporter
+  name: rocketmq-exporter-rocketmq-1
   namespace: {{ exporter_namespace }}
   labels:
-    app.kubernetes.io/name: zookeeper-exporter
+    app.kubernetes.io/name: rocketmq-exporter-rocketmq-1
 spec:
   replicas: 1
   strategy:
     type: RollingUpdate
   selector:
     matchLabels:
-      app.kubernetes.io/name: zookeeper-exporter
+      app.kubernetes.io/name: rocketmq-exporter-rocketmq-1
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: zookeeper-exporter
+        app.kubernetes.io/name: rocketmq-exporter-rocketmq-1
     spec:
       nodeSelector:
         {{ nodeselector_key }}: {{ nodeselector_value }}
@@ -25,18 +25,16 @@ spec:
       containers:
         - name: exporter
           image: {{ exporter_image }}
-          imagePullPolicy: "IfNotPresent"
           args:
-#            - -zk-hosts=<zookeeper-ip1>:<zookeeper-port>,<zookeeper-ip2>:<zookeeper-port>,<zookeeper-ip3>:<zookeeper-port>
-            - -zk-hosts={{ zookeeper_ip }}
+            - --rocketmq.config.namesrvAddr={{ rocketmq_ip }}:9876
+            - --rocketmq.config.rocketmqVersion=V4_8_0
           ports:
             - name: metrics
-              containerPort: 9141
+              containerPort: 5557
           resources:
             limits:
-              cpu: 10m
-              memory: 40Mi
+              cpu: 200m
+              memory: 1000Mi
             requests:
-              cpu: 5m
+              cpu: 10m
               memory: 20Mi
-

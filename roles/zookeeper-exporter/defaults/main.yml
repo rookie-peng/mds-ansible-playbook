@@ -6,13 +6,9 @@ image_pull_secret: regsecret
 tolerate_key: mds
 nodeselector_key: zone
 nodeselector_value: mds
-#admin_password: <zookeeper-password-secret>
 #env: <env-tag>
 #group: <group-tag>
 #projectCode: <project-tag>
-#zookeeper_ip: 
-#  - ip1
-#  - ip2
-#  - ip3
+#zookeeper_ip: <zookeeper-ip1>:<zookeeper-port>,<zookeeper-ip2>:<zookeeper-port>,<zookeeper-ip3>:<zookeeper-port>
 #zookeeper_port: <zookeeper-port>
 
