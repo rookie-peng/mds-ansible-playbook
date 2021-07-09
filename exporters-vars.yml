@@ -5,6 +5,15 @@
 #nodeselector_key: zone
 #nodeselector_value: mds
 #env: <env-tag>
+node_exporter_is_install: true
+emqx_exporter_is_install: true
+influxdb_exporter_is_install: true
+kafka_exporter_is_install: true
+mysqld_exporter_is_install: true
+rabbitmq_exporter_is_install: true
+redis_exporter_is_install: true
+rocketmq_exporter_is_install: true
+zookeeper_exporter_is_install: true
 
 
 #####################################################  kafka-exporter    ###########################
