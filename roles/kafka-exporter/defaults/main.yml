@@ -1,6 +1,15 @@
 ---
 # defaults file for kafka-exporter
 exporter_namespace: mds
-kafka_exporter_image: 
+kafka_exporter_image: danielqsj/kafka-exporter:latest
+image_pull_secret: regsecret
+kafka_server:
+  - 127.0.0.1:9092
+  - 127.0.0.1:9092
+#env: <env-tag>
+#kafka_group: <group-tag>
+#kafka_projectCode: <project-tag>
 tolerate_key: mds
+nodeselector_key: zone
+nodeselector_value: mds
 

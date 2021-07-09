@@ -7,8 +7,8 @@ tolerate_key: mds
 nodeselector_key: zone
 nodeselector_value: mds
 #env: <env-tag>
-#group: <group-tag>
-#projectCode: <project-tag>
+#influxdb_group: <group-tag>
+#influxdb_projectCode: <project-tag>
 #influxdb_ip: <influxdb-ip>
 #influxdb_port: <influxdb-port>
 #influxdb_addr: http://{{ influxdb_ip  }}:{{ influxdb_port }}

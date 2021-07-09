@@ -2,7 +2,7 @@
 # defaults file for rabbitmq-exporter
 exporter_namespace: mds
 exporter_image: kbudde/rabbitmq-exporter:v1.0.0-RC6.1
-#image_pull_secret: regsecret
+image_pull_secret: regsecret
 tolerate_key: mds
 nodeselector_key: zone
 nodeselector_value: mds

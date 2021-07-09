@@ -8,8 +8,8 @@ nodeselector_key: zone
 nodeselector_value: mds
 #admin_password: <redis-password-secret>
 #env: <env-tag>
-#group: <group-tag>
-#projectCode: <project-tag>
+#redis_group: <group-tag>
+#redis_projectCode: <project-tag>
 #redis_ip: <redis-ip>
 #redis-port: <redis-port>
 #redis_addr: redis://{{ redis-ip }}:{{ redis-port }}

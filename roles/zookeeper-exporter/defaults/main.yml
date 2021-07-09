@@ -7,8 +7,7 @@ tolerate_key: mds
 nodeselector_key: zone
 nodeselector_value: mds
 #env: <env-tag>
-#group: <group-tag>
-#projectCode: <project-tag>
+#zookeeper_group: <group-tag>
+#zookeeper_projectCode: <project-tag>
 #zookeeper_ip: <zookeeper-ip1>:<zookeeper-port>,<zookeeper-ip2>:<zookeeper-port>,<zookeeper-ip3>:<zookeeper-port>
-#zookeeper_port: <zookeeper-port>
 

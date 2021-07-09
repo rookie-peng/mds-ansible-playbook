@@ -11,8 +11,8 @@ metadata:
     instance: {{ mysqld_ip }}
     category: DataBase
     env: {{ env }}
-    group: {{ group }}
-    projectCode: {{ projectCode }}
+    group: {{ mysqld_group }}
+    projectCode: {{ mysqld_projectCode }}
     type: MySQL
 spec:
   type: ClusterIP

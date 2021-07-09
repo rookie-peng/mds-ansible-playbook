@@ -10,8 +10,8 @@ metadata:
     app.kubernetes.io/name: rabbitmq-exporter
     category: BigData
     env: {{ env }}
-    group: {{ group }}
-    projectCode: {{ projectCode }}
+    group: {{ rabbitmq_group }}
+    projectCode: {{ rabbitmq_projectCode }}
     type: Rabbitmq
 spec:
   type: ClusterIP

@@ -10,9 +10,8 @@ metadata:
     app.kubernetes.io/name: influxdb-exporter-{{ influxdb_ip }}
     category: DataBase
     env: {{ env }}
-    instance: {{ influxdb_ip }}
-    group: {{ group }}
-    projectCode: {{ projectCode }}
+    group: {{ influxdb_group }}
+    projectCode: {{ influxdb_projectCode }}
     type: Influxdb
 spec:
   type: ClusterIP

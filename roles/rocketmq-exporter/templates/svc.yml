@@ -10,10 +10,9 @@ metadata:
     app.kubernetes.io/name: rocketmq-exporter-rocketmq-1
     category: BigData
     env: {{ env }}
-    group: RocketMQ
-    projectCode: {{ projectCode }}
+    group: {{ rocketmq_group }}
+    projectCode: {{ rocketmq_projectCode }}
     type: RocketMQ
-    instance: {{ projectCode }}
 spec:
   type: ClusterIP
   ports:

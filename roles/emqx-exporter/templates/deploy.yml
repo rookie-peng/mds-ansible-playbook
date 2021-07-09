@@ -24,7 +24,7 @@ spec:
           operator: Exists
       containers:
         - name: exporter
-          image: {{ exporter_image }}
+          image: {{ emqx_exporter_image }}
           env:
             - name: EMQ_USERNAME
               value: "admin"

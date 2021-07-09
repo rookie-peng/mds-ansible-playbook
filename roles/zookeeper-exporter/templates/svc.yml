@@ -10,8 +10,8 @@ metadata:
     app.kubernetes.io/name: zookeeper-exporter
     category: BigData
     env: {{ env }}
-    group: {{ group }}
-    projectCode: {{ projectCode }}
+    group: {{ zookeeper_group }}
+    projectCode: {{ zookeeper_projectCode }}
     type: Zookeeper
 spec:
   type: ClusterIP

@@ -3,3 +3,6 @@
 exporter_namespace: mds
 node_exporter_image: prom/node-exporter:v0.18.0
 tolerate_key: mds
+#env: <env-tag>
+#node_group: <group-tag>
+#node_projectCode: <project-tag>

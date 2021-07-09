@@ -7,8 +7,8 @@ tolerate_key: mds
 nodeselector_key: zone
 nodeselector_value: mds
 #env: <env-tag>
-#group: <group-tag>
-#projectCode: <project-tag>
+rocketmq_group: RocketMQ
+#rocketmq_projectCode: <project-tag>
 #rocketmq_ip: <rocketmq-ip>
-#rocketmq_port: <rocketmq-port>
+rocketmq_port: 9876
 #rocketmq_addr: http://{{ rocketmq_ip  }}:{{ rocketmq_port }}

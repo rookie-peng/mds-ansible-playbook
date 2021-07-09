@@ -21,4 +21,14 @@
     - { role: prometheus-stack,     tags: ['prometheus-stack'],     when: prometheus_stack_is_install | bool }
     - { role: mds-app,              tags: ['mds-app'],              when: mds_app_is_install | bool }
    # - { role: graylog,   when: graylog_is_install | bool }
+   # - { role: graylog,   when: graylog_is_install | bool }
+   # - { role: graylog,   when: graylog_is_install | bool }
+   # - { role: graylog,   when: graylog_is_install | bool }
+   # - { role: graylog,   when: graylog_is_install | bool }
+   # - { role: graylog,   when: graylog_is_install | bool }
+   # - { role: graylog,   when: graylog_is_install | bool }
+   # - { role: graylog,   when: graylog_is_install | bool }
+   # - { role: graylog,   when: graylog_is_install | bool }
+   # - { role: graylog,   when: graylog_is_install | bool }
+   # - { role: graylog,   when: graylog_is_install | bool }
  

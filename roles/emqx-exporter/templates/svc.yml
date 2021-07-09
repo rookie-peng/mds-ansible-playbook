@@ -10,8 +10,8 @@ metadata:
     app.kubernetes.io/name: emqx-exporter
     category: BigData
     env: {{ env }}
-    group: {{ group }}
-    projectCode: {{ projectCode }}
+    group: {{ emqx_group }}
+    projectCode: {{ emqx_projectCode }}
     type: Emqx
 spec:
   type: ClusterIP

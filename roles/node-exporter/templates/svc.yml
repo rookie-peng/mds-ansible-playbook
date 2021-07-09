@@ -10,9 +10,9 @@ metadata:
     chart: prometheus-9.3.1
     heritage: Tiller
     category: Host
-#    env: <env-tag>
-#    group: <group-tag>
-#    projectCode: <project-tag>
+    env: {{ env }}
+    group: {{ node_group }}
+    projectCode: {{ node_projectCode }}
     type: Host
   name: mds-mds-prometheus-node-exporter
   namespace: {{ exporter_namespace }}

@@ -11,8 +11,8 @@ metadata:
     category: DataBase
     instance: {{ redis_ip }}
     env: {{ env }}
-    group: {{ group }}
-    projectCode: {{ projectCode }}
+    group: {{ redis_group }}
+    projectCode: {{ redis_projectCode }}
     type: Redis
 spec:
   type: ClusterIP

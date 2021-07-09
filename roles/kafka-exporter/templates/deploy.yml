@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: kafka-exporter
+  namespace: {{ exporter_namespace }}
   labels:
     app.kubernetes.io/name: kafka-exporter
 spec:
@@ -15,15 +16,18 @@ spec:
         app.kubernetes.io/name: kafka-exporter
     spec:
       nodeSelector:
-        zone: mds
+        {{ nodeselector_key }}: {{ nodeselector_value }}
       tolerations:
-        - key: mds
+        - key: {{ tolerate_key }}
           operator: Exists
       containers:
         - name: kafka-exporter
-          image: danielqsj/kafka-exporter:latest
+          image: {{ kafka_exporter_image }}
           imagePullPolicy: IfNotPresent
           args:
+            {% for server in kafka_sever %}
+            - --kafka.server={{ server }}
+            {% endfor %}
           ports:
             - name: metrics
               containerPort: 9308
