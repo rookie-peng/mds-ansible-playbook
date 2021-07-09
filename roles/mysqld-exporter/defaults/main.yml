@@ -1,5 +1,5 @@
 ---
-# defaults file for rabbitmq-exporter
+# defaults file for mysqld-exporter
 exporter_namespace: mds
 exporter_image: prom/mysqld-exporter:v0.11.0
 #image_pull_secret: regsecret

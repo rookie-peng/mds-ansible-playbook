@@ -1,2 +1,14 @@
 ---
 # defaults file for rocketmq-exporter
+exporter_namespace: mds
+rocketmq_exporter_image: ccr.ccs.tencentyun.com/iot4/rocketmq-exporter:0.0.2
+image_pull_secret: regsecret
+tolerate_key: mds
+nodeselector_key: zone
+nodeselector_value: mds
+#env: <env-tag>
+#group: <group-tag>
+#projectCode: <project-tag>
+#rocketmq_ip: <rocketmq-ip>
+#rocketmq_port: <rocketmq-port>
+#rocketmq_addr: http://{{ rocketmq_ip  }}:{{ rocketmq_port }}

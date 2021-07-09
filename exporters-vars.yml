@@ -1,47 +1,92 @@
-mds_app_is_install: true
+#####################################################  common  ##############################
+#exporter_namespace: mds
+#image_pull_secret: regsecret
+#tolerate_key: mds
+#nodeselector_key: zone
+#nodeselector_value: mds
+#projectCode: <project-tag>
+#group: <group-tag>
+#env: <env-tag>
 
 
 #####################################################  kafka-exporter    ###########################
-#devops_gateway_image: private-registry.rootcloud.com/operations/devops-gateway:master_7a314bf9_20200923-140330
+# kafka_exporter_image: 
 
 
 #####################################################  rabbit-exporter  ##############################
-#devops_web_image: private-registry.rootcloud.com/cicd/devops-web:master_7b5e668_20200930-090114
+exporter_image: kbudde/rabbitmq-exporter:v1.0.0-RC6.1
+#tolerate_key: mds
+#nodeselector_key: zone
+#nodeselector_value: mds
+#rabbitmq_password: <rabbitmq-password-secret>
+#projectCode: <project-tag>
+#group: <group-tag>
+#env: <env-tag>
+#rabbit_url: http://<rabbitmq_ip>:<rabbitmq_port>
+#rabbit_user: <rabbitmq-user>
+
 
 
 #####################################################  node-exporter    ##############################
-#devops_mds_image: private-registry.rootcloud.com/cicd/devops-mds:master_de4313d_20201019-200046
+#node_exporter_image: prom/node-exporter:v0.18.0
 
 
 #####################################################  emqx-exporter    ##############################
-#devops_eureka_image: private-registry.rootcloud.com/operations/devops-eureka:master_a9b343a_20200909-180844
+#exporter_image: private-registry.rootcloud.com/mds/exporters/emq_exporter:pre-1.0.2
+#admin_password: <emqx-password-secret>
+#env: <env-tag>
+#group: <group-tag>
+#projectCode: <project-tag>
+#emqx_ip: <emqx-ip>
+#emqx_port: <emqx-port>
 
 
-#####################################################  influxdb-exporter     ##############################
-#devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
+#####################################################  rocketmq-exporter  ##############################
+#rocketmq_exporter_image: ccr.ccs.tencentyun.com/iot4/rocketmq-exporter:0.0.2
+#env: <env-tag>
+#group: <group-tag>
+#projectCode: <project-tag>
+#rocketmq_ip: <rocketmq-ip>
+#rocketmq_port: <rocketmq-port>
+#rocketmq_addr: http://{{ rocketmq_ip  }}:{{ rocketmq_port }}
 
 
-#####################################################  redis-exporter        ##############################
+#####################################################  redis-exporter     ##############################
 #devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
 
 
 #####################################################  zookeeper-exporter    ##############################
-#devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
+exporter_image: dabealu/zookeeper-exporter:v0.1.10
+image_pull_secret: regsecret
+#env: <env-tag>
+#group: <group-tag>
+#projectCode: <project-tag>
+#zookeeper_ip: <zookeeper-ip1>:<zookeeper-port>,<zookeeper-ip2>:<zookeeper-port>,<zookeeper-ip3>:<zookeeper-port>
+#zookeeper_port: <zookeeper-port>
 
 
 #####################################################  mysql-exporter        ##############################
-#devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
+exporter_image: prom/mysqld-exporter:v0.11.0
+#admin_password: <mysqld-password-secret>
+#env: <env-tag>
+#group: <group-tag>
+#projectCode: <project-tag>
+#mysqld_ip: <mysqld-ip>
+#mysqld_port: <mysqld-port>
+#user:
+#password:
+#data_source_name: {{ user }}:{{ password }}@{{ mysqld_ip }}:{{ mysqld_port }}
 
 
-#####################################################  rocketmq-exporter     ##############################
-#devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
+
+#####################################################  influxdb-exporter     #############################
+#influxdb_exporter_image: telegraf:1.13.0-alpine
+#env: <env-tag>
+#group: <group-tag>
+#projectCode: <project-tag>
+#influxdb_ip: <influxdb-ip>
+#influxdb_port: <influxdb-port>
+#influxdb_addr: http://{{ influxdb_ip  }}:{{ influxdb_port }}
 
 
-#####################################################  common  ##############################
-#mds_app_namespace: mds
-#image_pull_secret: regsecret
-#mds_app_state: present
-#tolerate_key: mds
-#nodeselector_key: zone
-#nodeselector_value: mds
 
