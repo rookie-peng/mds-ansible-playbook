@@ -1,2 +1,9 @@
 ---
 # tasks file for kafka-exporter
+- name: kafka-exporter | installation.
+  k8s:
+    state: present
+    definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
+  with_items:
+    - svc.yml
+    - deploy.yml

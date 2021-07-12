@@ -1,2 +1,10 @@
 ---
 # tasks file for influxdb-exporter
+- name: influxdb-exporter | installation.
+  k8s:
+    state: present
+    definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
+  with_items:
+    - svc.yml
+    - cm.yml
+    - deploy.yml

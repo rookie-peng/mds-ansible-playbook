@@ -21,13 +21,18 @@ zookeeper_exporter_is_install: true
 #kafka_server:
 #  - 127.0.0.1:9092
 #  - 127.0.0.1:9092
-##kafka_group: <group-tag>
-##kafka_projectCode: <project-tag>
+#kafka_group: <group-tag>
+kafka_group: test
+kafka_group: test
+#kafka_projectCode: <project-tag>
+kafka_projectCode: test
 
 
 #####################################################  rabbitmq-exporter  ##############################
 #exporter_image: kbudde/rabbitmq-exporter:v1.0.0-RC6.1
 #projectCode: <project-tag>
+projectCode: test
+group: test
 #group: <group-tag>
 #rabbit_url: http://<rabbitmq_ip>:<rabbitmq_port>
 #rabbit_user: <rabbitmq-user>
@@ -37,26 +42,36 @@ zookeeper_exporter_is_install: true
 
 #####################################################  node-exporter    ##############################
 #node_exporter_image: prom/node-exporter:v0.18.0
-#env: <env-tag>
-#node_group: <group-tag>
-#node_projectCode: <project-tag>
+env: test
+node_group: test
+node_projectCode: test
 
 
 #####################################################  emqx-exporter    ##############################
 #emqx_exporter_image: private-registry.rootcloud.com/mds/exporters/emq_exporter:pre-1.0.2
 #admin_password: <emqx-password-secret>
+admin_password: 123456
 #emqx_group: <group-tag>
+emqx_group: test
+emqx_projectCode: test
 #emqx_projectCode: <project-tag>
 #emqx_ip: <emqx-ip>
+emqx_ip: 1.1.1.1
+emqx_port: 222
 #emqx_port: <emqx-port>
 
 
 #####################################################  rocketmq-exporter  ##############################
 #rocketmq_exporter_image: ccr.ccs.tencentyun.com/iot4/rocketmq-exporter:0.0.2
 #rocketmq_group: RocketMQ
+rocketmq_group: test
+rocketmq_projectCode: test
 #rocketmq_projectCode: <project-tag>
+rocketmq_projectCode: test
 #rocketmq_ip: <rocketmq-ip>
+rocketmq_ip: 1.1.1.1
 #rocketmq_port: 9876
+rocketmq_port: 9876
 #rocketmq_addr: http://{{ rocketmq_ip  }}:{{ rocketmq_port }}
 
 
@@ -64,6 +79,8 @@ zookeeper_exporter_is_install: true
 #exporter_image: oliver006/redis_exporter:latest
 #admin_password: <redis-password-secret>
 #redis_group: <group-tag>
+redis_group: test
+redis_projectCode: test
 #redis_projectCode: <project-tag>
 #redis_ip: <redis-ip>
 #redis-port: <redis-port>
@@ -73,14 +90,18 @@ zookeeper_exporter_is_install: true
 #####################################################  zookeeper-exporter    ##############################
 #exporter_image: dabealu/zookeeper-exporter:v0.1.10
 #zookeeper_group: <group-tag>
-#zookeeper_projectCode: <project-tag>
+zookeeper_group: test
+zookeeper_projectCode: test
 #zookeeper_ip: <zookeeper-ip1>:<zookeeper-port>,<zookeeper-ip2>:<zookeeper-port>,<zookeeper-ip3>:<zookeeper-port>
+zookeeper_ip: 1.1.1.1:222
 
 
 
 #####################################################  mysqld-exporter        ##############################
 #exporter_image: prom/mysqld-exporter:v0.11.0
 #mysqld_group: <group-tag>
+mysqld_group: test
+mysqld_projectCode: test
 #mysqld_projectCode: <project-tag>
 #mysqld_ip: <mysqld-ip>
 #mysqld_port: <mysqld-port>
@@ -94,8 +115,11 @@ zookeeper_exporter_is_install: true
 #####################################################  influxdb-exporter     #############################
 #influxdb_exporter_image: telegraf:1.13.0-alpine
 #env: <env-tag>
+env: test
+influxdb_group: test
 #influxdb_group: <group-tag>
 #influxdb_projectCode: <project-tag>
+influxdb_projectCode: test
 #influxdb_ip: <influxdb-ip>
 #influxdb_port: <influxdb-port>
 #influxdb_addr: http://{{ influxdb_ip  }}:{{ influxdb_port }}
