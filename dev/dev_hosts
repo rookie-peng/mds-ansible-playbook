@@ -1,5 +1,5 @@
 [mds-node]
-dev-node18
+node01
 
 [all:vars]
-node=dev-node18
+node=node01

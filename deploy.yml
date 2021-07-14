@@ -19,8 +19,8 @@
         timeout: '90'
       
   roles:
-   # - { role: prometheus-stack,     tags: ['prometheus-stack'],        when: prometheus_stack_is_install | bool }
-   # - { role: mds-app,              tags: ['mds-app'],                 when: mds_app_is_install | bool }
+    - { role: prometheus-stack,     tags: ['prometheus-stack'],        when: prometheus_stack_is_install | bool }
+    - { role: mds-app,              tags: ['mds-app'],                 when: mds_app_is_install | bool }
    # - { role: graylog,              tags: ['graylog'],                 when: graylog_is_install | bool }
    # - { role: node-exporter,        tags: ['node-exporter'],           when: node_exporter_is_install | bool }
    # - { role: emqx-exporter,        tags: ['emqx-exporter'],           when: emqx_exporter_is_install | bool }
@@ -29,6 +29,6 @@
    # - { role: mysqld-exporter,      tags: ['mysqld-exporter'],         when: mysqld_exporter_is_install | bool }
    # - { role: rabbitmq-exporter,    tags: ['rabbitmq-exporter'],       when: rabbitmq_exporter_is_install | bool }
    # - { role: redis-exporter,       tags: ['redis-exporter'],          when: redis_exporter_is_install | bool }
-    - { role: rocketmq-exporter,    tags: ['rocketmq-exporter'],       when: rocketmq_exporter_is_install | bool }
-    - { role: zookeeper-exporter,   tags: ['zookeeper-exporter'],      when: zookeeper_exporter_is_install | bool }
+   # - { role: rocketmq-exporter,    tags: ['rocketmq-exporter'],       when: rocketmq_exporter_is_install | bool }
+   # - { role: zookeeper-exporter,   tags: ['zookeeper-exporter'],      when: zookeeper_exporter_is_install | bool }
 

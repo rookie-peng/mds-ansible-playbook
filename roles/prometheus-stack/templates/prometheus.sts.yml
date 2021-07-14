@@ -76,10 +76,10 @@ spec:
             timeoutSeconds: 30
           resources:
             limits:
-              cpu: 8000m
+              cpu: 2000m
               memory: 16Gi
             requests:
-              cpu: 4000m
+              cpu: 2000m
               memory: 8000Mi
 
           volumeMounts:
