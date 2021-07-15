@@ -1,5 +1,19 @@
 ---
 # tasks file for common
+- name: install pip 
+  shell: curl -sL https://bootstrap.pypa.io/pip/2.7/get-pip.py  | python -   
+
+- name: install python package 
+  shell: pip install setuptools -U  &&
+         pip install pyyaml --ignore-install &&
+         pip install ipaddress --ignore-install &&
+         pip install kubernetes
+
+- name: install openshift
+  yum:
+    name: python2-openshift.noarch
+    state: present
+
 - name: Taint node and Label node 
   shell: kubectl taint  node {{ node }} {{ tolerate_key }}=:NoSchedule --overwrite &&
          kubectl label  node {{ node }} {{ nodeselector_key }}={{ nodeselector_value }} --overwrite &&
@@ -20,7 +34,6 @@
       kind: StorageClass
       metadata:
         name: prometheus-storage
-        namespace:
       provisioner: kubernetes.io/no-provisioner
       volumeBindingMode: WaitForFirstConsumer
 

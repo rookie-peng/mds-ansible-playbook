@@ -1,6 +1,14 @@
 prometheus_stack_is_install: true
 
 
+####################################################  common ################################
+#image_pull_secret: regsecret
+#prometheus_stack_namespace: mds
+#tolerate_key: mds
+#nodeselector_key: zone
+#nodeselector_value: mds
+
+
 ####################################################  prometheus  ###########################
 #prometheus_image: prom/prometheus:v2.13.1
 #prometheus_ac_image: registry.rootcloudapp.com/alert-controller:v1.1
@@ -35,9 +43,3 @@ prometheus_stack_is_install: true
 #pushgateway_flink_state: present
 
 
-###################################################  common ################################
-#image_pull_secret: regsecret
-#prometheus_stack_namespace: mds
-#tolerate_key: mds
-#nodeselector_key: zone
-#nodeselector_value: mds

@@ -1,6 +1,15 @@
 mds_app_is_install: true
 
 
+####################################################  common  ##############################
+#mds_app_namespace: mds
+#image_pull_secret: regsecret
+#mds_app_state: present
+#tolerate_key: mds
+#nodeselector_key: zone
+#nodeselector_value: mds
+
+
 ###################################################  devops-gateway  ###########################
 #devops_gateway_image: private-registry.rootcloud.com/operations/devops-gateway:master_7a314bf9_20200923-140330
 
@@ -21,11 +30,4 @@ mds_app_is_install: true
 #devops_system_image: private-registry.rootcloud.com/cicd/devops-system:master_c84e900_20201015-085033
 
 
-#####################################################  common  ##############################
-#mds_app_namespace: mds
-#image_pull_secret: regsecret
-#mds_app_state: present
-#tolerate_key: mds
-#nodeselector_key: zone
-#nodeselector_value: mds
 
