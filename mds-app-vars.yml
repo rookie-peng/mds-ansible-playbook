@@ -1,4 +1,14 @@
 mds_app_is_install: true
+# mds-app config infomation 
+HELPDESKMYSQLHOST:
+HELPDESKMYSQLPORT:
+HELPDESKMYSQLPWD:
+MYSQLHOST:
+MYSQLPORT:
+MYSQLPWD:
+REDISHOST:
+REDISPORT:
+REDISPWD:
 
 
 ####################################################  common  ##############################
