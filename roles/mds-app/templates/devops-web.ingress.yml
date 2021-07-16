@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: devops-web
+  namespace: {{ mds_app_namespace }}
+spec:
+  rules:
+    - host: {{ devops_web_ingress }}
+      http:
+        paths:
+          - backend:
+              serviceName: devops-web
+              servicePort: 80
+            path: /
+

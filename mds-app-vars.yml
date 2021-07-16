@@ -1,4 +1,11 @@
 mds_app_is_install: true
+
+# ingress for mds
+devops_gateway_ingress:
+devops_web_ingress:
+devops_eureka_ingress:
+
+
 # mds-app config infomation 
 HELPDESKMYSQLHOST:
 HELPDESKMYSQLPORT:

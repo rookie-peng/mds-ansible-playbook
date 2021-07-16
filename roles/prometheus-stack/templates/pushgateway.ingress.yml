@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pushgateway-flink
+  namespace: {{ prometheus_stack_namespace }}
+  labels:
+    app: pushgateway-flink
+    chart: prometheus-9.3.1
+    release: mds-mds
+    heritage: Tiller
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: 300m
+spec:
+  rules:
+    - host: {{ pushgateway_ingress }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: pushgateway
+              servicePort: 9091

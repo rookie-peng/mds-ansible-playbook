@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: devops-eureka
+  namespace: {{ mds_app_namespace }}
+spec:
+  rules:
+    - host: {{ devops_eureka_ingress }}
+      http:
+        paths:
+          - backend:
+              serviceName: devops-eureka
+              servicePort: 80
+            path: /
+

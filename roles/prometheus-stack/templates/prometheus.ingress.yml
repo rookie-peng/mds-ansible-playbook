@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    component: "server"
+    app: prometheus
+    release: mds-mds
+    chart: prometheus-9.3.1
+    heritage: Tiller
+  name: prometheus
+  namespace: {{ prometheus_stack_namespace }}
+spec:
+  rules:
+    - host: {{ prometheus_ingress }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: prometheus
+              servicePort: 9090
+

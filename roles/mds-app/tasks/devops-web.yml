@@ -8,4 +8,8 @@
     state: "{{ mds_app_state }}"
     definition: "{{ lookup('template', 'devops-web.deploy.yml') | from_yaml }}"
 
+- name: devops-web  | Create a ingress for devops-web
+  k8s: 
+    state: "{{ mds_app_state }}"
+    definition: "{{ lookup('template', 'devops-web.ingress.yml') | from_yaml }}"
 

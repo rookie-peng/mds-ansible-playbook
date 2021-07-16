@@ -1,4 +1,10 @@
 prometheus_stack_is_install: true
+prometheus_ingress:
+prometheus_ac_ingress:
+grafana_ingress:
+alertmanager_ingress:
+pushgateway_ingress:
+pushgateway_flink_ingress:
 
 
 ####################################################  common ################################

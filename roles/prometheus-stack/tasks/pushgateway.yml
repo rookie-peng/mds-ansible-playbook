@@ -16,3 +16,8 @@
   k8s: 
     state: "{{ pushgateway_state }}"
     definition: "{{ lookup('template', 'pushgateway.deploy.yml') | from_yaml }}"
+
+- name: pushgateway | Create a ingress for pushgateway 
+  k8s: 
+    state: "{{ pushgateway_state }}"
+    definition: "{{ lookup('template', 'pushgateway.ingress.yml') | from_yaml }}"

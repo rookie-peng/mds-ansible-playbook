@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+    component: "alertmanager"
+    app: prometheus
+    release: mds-mds
+    chart: prometheus-9.3.1
+    heritage: Tiller
+  name: alertmanager
+  namespace: {{ prometheus_stack_namespace }}
+spec:
+  rules:
+    - host: {{ alertmanager_ingress }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: alertmanager
+              servicePort: 80
+

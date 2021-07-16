@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: devops-gateway
+  namespace: {{ mds_app_namespace }}
+spec:
+  rules:
+    - host: {{ devops_gateway_ingress }}
+      http:
+        paths:
+          - backend:
+              serviceName: devops-gateway
+              servicePort: 80
+            path: /
+

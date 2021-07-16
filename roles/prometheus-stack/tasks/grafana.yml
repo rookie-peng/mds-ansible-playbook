@@ -39,3 +39,8 @@
   k8s: 
     state: "{{ grafana_state }}"
     definition: "{{ lookup('template', 'grafana.deploy.yml') | from_yaml }}"
+
+- name: grafana | Create a ingress for grafana 
+  k8s: 
+    state: "{{ grafana_state }}"
+    definition: "{{ lookup('template', 'grafana.ingress.yml') | from_yaml }}"

@@ -1,0 +1,20 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: grafana
+  namespace: {{ prometheus_stack_namespace }}
+  labels:
+    app: grafana
+    chart: grafana-4.0.2
+    release: mds-mds
+    heritage: Tiller
+spec:
+  rules:
+    - host: {{ grafana_ingress }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: grafana
+              servicePort: 80
+

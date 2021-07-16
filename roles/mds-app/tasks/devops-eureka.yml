@@ -8,4 +8,8 @@
     state: "{{ mds_app_state }}"
     definition: "{{ lookup('template', 'devops-eureka.deploy.yml') | from_yaml }}"
 
+- name: devops-eureka  | Create a ingress for devops-eureka
+  k8s: 
+    state: "{{ mds_app_state }}"
+    definition: "{{ lookup('template', 'devops-eureka.ingress.yml') | from_yaml }}"
 

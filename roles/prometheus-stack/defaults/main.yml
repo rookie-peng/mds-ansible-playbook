@@ -6,33 +6,40 @@ prometheus_image: prom/prometheus:v2.13.1
 prometheus_ac_image: private-registry.rootcloud.com/mds/alert-controller:v1.1
 prometheus_vm_data_path: /data/prometheus
 prometheus_state: present
+prometheus_ingress:
+prometheus_ac_ingress:
 
 
 ####################################################  grafana  ##############################
 grafana_image: grafana/grafana:7.5.7
 grafana_vm_data_path: /data/grafana
 grafana_state: present
+grafana_ingress: 
 
 
 
 ###################################################  alertmanager ##########################
 alertmanager_image: prom/alertmanager:v0.18.0
 alertmanager_ac_image: private-registry.rootcloud.com/mds/alert-controller:v1.1
-alertmanager_webhook: http://devops-web.xxxxxxxxxx/devops/mds/alarm/history/send
+#alertmanager_webhook: http://devops-web.xxxxxxxxxx/devops/mds/alarm/history/send
+alertmanager_webhook: http://{{ devops_web_ingress }}/devops/mds/alarm/history/send
 alertmanager_vm_data_path: /data/alertmanager
 alertmanager_state: present
+alertmanager_ingress:
 
 
 
 ###################################################  pushgateway  ##########################
 pushgateway_image: dmathai/prom-pushgateway-ttl:latest
 pushgateway_state: present
+pushgateway__ingress: 
 
 
 
 ###################################################  pushgateway-flink  ##########################
 pushgateway_flink_image: dmathai/prom-pushgateway-ttl:latest
 pushgateway_flink_state: present
+pushgateway_flink_ingress: 
 
 
 

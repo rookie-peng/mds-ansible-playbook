@@ -31,3 +31,8 @@
   k8s: 
     state: "{{ alertmanager_state }}"
     definition: "{{ lookup('template', 'alertmanager.deploy.yml') | from_yaml }}"
+
+- name: alertmanager | Create a ingress for alertmanager 
+  k8s: 
+    state: "{{ alertmanager_state }}"
+    definition: "{{ lookup('template', 'alertmanager.ingress.yml') | from_yaml }}"

@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: prometheus-ac
+  namespace: {{ prometheus_stack_namespace }}
+spec:
+  rules:
+    - host: {{ prometheus_ac_ingress }}
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: prometheus
+              servicePort: 9533
+

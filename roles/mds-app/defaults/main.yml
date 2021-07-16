@@ -1,9 +1,11 @@
 ##################################################  devops-gateway  ###########################
 devops_gateway_image: private-registry.rootcloud.com/operations/devops-gateway:master_7a314bf9_20200923-140330
+devops_gateway_ingress:
 
 
 ####################################################  devops-web  ##############################
 devops_web_image: private-registry.rootcloud.com/cicd/devops-web:master_7b5e668_20200930-090114
+devops_web_ingress:
 
 
 ####################################################  devops-mds  ##############################
@@ -12,6 +14,7 @@ devops_mds_image: private-registry.rootcloud.com/cicd/devops-mds:master_de4313d_
 
 ####################################################  devops-eureka  ##############################
 devops_eureka_image: private-registry.rootcloud.com/operations/devops-eureka:master_a9b343a_20200909-180844
+devops_eureka_ingress:
 
 
 ####################################################  devops-system  ##############################

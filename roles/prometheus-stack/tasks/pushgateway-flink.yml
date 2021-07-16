@@ -16,3 +16,8 @@
   k8s: 
     state: "{{ pushgateway_flink_state }}"
     definition: "{{ lookup('template', 'pushgateway-flink.deploy.yml') | from_yaml }}"
+
+- name: pushgateway-flink | Create a ingress for pushgateway-flink 
+  k8s: 
+    state: "{{ pushgateway_flink_state }}"
+    definition: "{{ lookup('template', 'pushgateway-flink.ingress.yml') | from_yaml }}"

@@ -21,3 +21,11 @@
   k8s: 
     state: "{{ prometheus_state }}"
     definition: "{{ lookup('template', 'prometheus.sts.yml') | from_yaml }}"
+
+- name: prometheus | Create a ingress for prometheus 
+  k8s: 
+    state: "{{ prometheus_state }}"
+    definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
+  with_items:
+    - prometheus.ingress.yml
+    - prometheus-ac.ingress.yml
