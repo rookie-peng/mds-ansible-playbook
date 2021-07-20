@@ -14,10 +14,31 @@
     name: python2-openshift.noarch
     state: present
 
-- name: Taint node and Label node 
-  shell: kubectl taint  node {{ node }} {{ tolerate_key }}=:NoSchedule --overwrite &&
-         kubectl label  node {{ node }} {{ nodeselector_key }}={{ nodeselector_value }} --overwrite &&
-         kubectl label  node {{ node }} node-role.kubernetes.io/prometheus= --overwrite
+- name: Taint and Label prometheus node 
+  # when: inventory_hostname in groups['mds-node']
+  shell: kubectl taint  node {{ mds_node }} {{ tolerate_key }}=:NoSchedule --overwrite &&
+         kubectl label  node {{ mds_node }} {{ nodeselector_key }}={{ nodeselector_value }} --overwrite &&
+         kubectl label  node {{ mds_node }} node-role.kubernetes.io/prometheus= --overwrite
+  when: 
+    - prometheus_stack_is_install | bool
+
+- name: Taint and Label graylog node 
+  {% for node in graylog_master_node  %}
+  shell: kubectl label  node {{ node }} key=graylog-master --overwrite &&
+         kubectl taint  node {{ node }} es-data=:NoSchedule --overwrite &&
+         kubectl label  node {{ node }} label-key=es-data --overwrite
+  {% endfor %}
+  when: 
+    - graylog_is_install | bool
+
+- name: Taint and Label graylog node 
+  {% for node in graylog_slave_node  %}
+  shell: kubectl label  node {{ node }} key=graylog-slave --overwrite && 
+         kubectl taint  node {{ node }} es-data=:NoSchedule --overwrite &&
+         kubectl label  node {{ node }} label-key=es-data --overwrite
+  {% endfor %}
+  when: 
+    - graylog_is_install | bool
 
 - name: Create mds namespace
   k8s: 

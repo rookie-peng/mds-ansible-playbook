@@ -2,4 +2,11 @@
 node01
 
 [all:vars]
-node=node01
+# 注明需要打污点和标签的机器, 请填写节点在集群的名字
+mds_node=node01
+
+graylog_master_node:
+  - graylog1
+graylog_slave_node:
+  - graylog2
+  - graylog3
