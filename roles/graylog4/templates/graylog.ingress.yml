@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: graylog
+  namespace: {{ graylog_namespace }}
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+spec:
+  rules:
+  - host: {{ graylog_ingress }}
+    http:
+      paths:
+      - backend:
+          serviceName: graylog-http
+          servicePort: 9000
+

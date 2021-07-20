@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: graylog-input
+  namespace: {{ graylog_namespace }}
+  labels:
+    name: graylog
+spec:
+  selector:
+    graylog: "true"
+  ports:
+  - name: gelf-udp-input
+    protocol: UDP
+    port: 3333
+  - name: beats-tcp-input
+    protocol: TCP
+    port: 5044
+  type: ClusterIP

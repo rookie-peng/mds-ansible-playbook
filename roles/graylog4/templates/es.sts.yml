@@ -1,0 +1,95 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: elasticsearch
+  namespace: {{ graylog_namespace }}
+spec:
+  serviceName: "elasticsearch"
+  replicas: 3
+  podManagementPolicy: Parallel
+  selector:
+    matchLabels:
+      role: elasticsearch
+  template:
+    metadata:
+      labels:
+        role: elasticsearch
+    spec:
+      terminationGracePeriodSeconds: 10
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: role
+                operator: In
+                values:
+                - elasticsearch
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: elasticsearch
+        image: elasticsearch:7.5.1
+        imagePullPolicy: IfNotPresent
+        command: ["/bin/bash", "-c", "ulimit -l unlimited && sysctl -w vm.max_map_count=262144 && exec su elasticsearch /usr/local/bin/docker-entrypoint.sh"]
+        env:
+        - name: TZ
+          value: "Asia/Shanghai"
+        - name: ES_JAVA_OPTS
+          value: "-Xms6g -Xmx6g"
+        - name: ES_ES.INSECURE.ALLOW.ROOT
+          value: "true"
+        - name: discovery.zen.ping.unicast.hosts
+          value: "elasticsearch-0.elasticsearch,elasticsearch-1.elasticsearch,elasticsearch-2.elasticsearch"
+        - name: discovery.zen.minimum_master_nodes
+          value: "2"
+        - name: discovery.zen.ping.unicast.hosts.resolve_timeout
+          value: "30s"
+        - name: discovery.zen.ping_timeout
+          value: "30s"
+        - name: cluster.name
+          value: "graylog"
+        - name: bootstrap.memory_lock
+          value: "true"
+        ports:
+        - containerPort: 9200
+          name: http
+        - containerPort: 9300
+          name: transport
+        resources:
+          limits:
+            cpu: 2
+            memory: 8Gi
+          requests:
+            cpu: 2
+            memory: 8Gi
+#        livenessProbe:
+#          tcpSocket:
+#            port: transport
+#          initialDelaySeconds: 60
+#          periodSeconds: 10
+#          timeoutSeconds: 5
+#        readinessProbe:
+#          httpGet:
+#            path: /_cluster/health
+#            port: http
+#          initialDelaySeconds: 20
+#          periodSeconds: 5
+#          timeoutSeconds: 5
+        volumeMounts:
+        - name: local-storage
+          mountPath: /usr/share/elasticsearch/data
+        securityContext:
+          privileged: true
+      securityContext:
+        fsGroup: 1000
+      nodeSelector:
+        label-key: es-data
+      tolerations:
+      - key: es-data
+        operator: "Exists"
+        effect: "NoSchedule"
+      volumes:
+      - name: local-storage
+        hostPath:
+          path: {{ es_data_path }}
+          type: DirectoryOrCreate

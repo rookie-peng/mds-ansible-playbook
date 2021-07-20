@@ -1,0 +1,28 @@
+---
+# tasks file for graylog
+- name: graylog  | Create  elasticsearch cluster
+  k8s:
+    state: present
+    definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
+ with_items:
+   - es.sts.yml
+   - es.svc.yml
+
+- name: graylog  | Create  mongodb 
+  k8s:
+    state: present
+    definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
+ with_items:
+
+- name: graylog  | Create  graylog cluster 
+  k8s:
+    state: present
+    definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
+ with_items:
+   - graylog-master.sts.yml
+   - graylog-slave.sts.yml
+   - graylog-master.svc.yml
+   - graylog-slave.svc.yml
+   - graylog-http.svc.yml
+   - graylog-input.svc.yml
+   - graylog.ingress.yml
