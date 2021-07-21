@@ -2,5 +2,12 @@ graylog_is_install: true
 graylog_namespace: logging
 es_data_path: /data/es-data
 # 域名请根据情况设置，mongodb默认值就好
-graylog_ingress: graylog.rootcloud-platform-prod.rootcloudapp.com
+#graylog_ingress: graylog.rootcloud-platform-prod.rootcloudapp.com
+graylog_ingress: graylog.devops.rootcloudapp.com
 GRAYLOG_MONGODB_URI: mongodb://graylog:graylog_201012@mongodb:27017/graylog?authSource=graylog
+
+graylog_master_node:
+  - 10.74.6.36
+graylog_slave_node:
+  - 10.74.6.43
+  - 10.74.6.8

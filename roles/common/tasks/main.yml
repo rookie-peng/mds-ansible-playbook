@@ -1,7 +1,7 @@
 ---
 # tasks file for common
-- name: install pip 
-  shell: curl -sL https://bootstrap.pypa.io/pip/2.7/get-pip.py  | python -   
+#- name: install pip 
+#  shell: curl -sL https://bootstrap.pypa.io/pip/2.7/get-pip.py  | python -   
 
 - name: install python package 
   shell: pip install setuptools -U  &&
@@ -14,6 +14,11 @@
     name: python2-openshift.noarch
     state: present
 
+- name: install community.kubernetes.helm
+  shell: ansible-galaxy collection install community.kubernetes
+  when:
+    - graylog_is_install | bool
+
 - name: Taint and Label prometheus node 
   # when: inventory_hostname in groups['mds-node']
   shell: kubectl taint  node {{ mds_node }} {{ tolerate_key }}=:NoSchedule --overwrite &&
@@ -23,20 +28,24 @@
     - prometheus_stack_is_install | bool
 
 - name: Taint and Label graylog node 
-  {% for node in graylog_master_node  %}
-  shell: kubectl label  node {{ node }} key=graylog-master --overwrite &&
-         kubectl taint  node {{ node }} es-data=:NoSchedule --overwrite &&
-         kubectl label  node {{ node }} label-key=es-data --overwrite
-  {% endfor %}
+  #{% for node in graylog_master_node  %}
+  shell: kubectl label  node '{{ item }}' key=graylog-master --overwrite &&
+         kubectl taint  node '{{ item }}' es-data=:NoSchedule --overwrite &&
+         kubectl label  node '{{ item }}' label-key=es-data --overwrite
+  #{% endfor %}
+  with_items:
+    - "{{ graylog_master_node }}"
   when: 
     - graylog_is_install | bool
 
 - name: Taint and Label graylog node 
-  {% for node in graylog_slave_node  %}
-  shell: kubectl label  node {{ node }} key=graylog-slave --overwrite && 
-         kubectl taint  node {{ node }} es-data=:NoSchedule --overwrite &&
-         kubectl label  node {{ node }} label-key=es-data --overwrite
-  {% endfor %}
+  #{% for node in graylog_slave_node  %}
+  shell: kubectl label  node {{ item }} key=graylog-slave --overwrite && 
+         kubectl taint  node {{ item }} es-data=:NoSchedule --overwrite &&
+         kubectl label  node {{ item }} label-key=es-data --overwrite
+  #{% endfor %}
+  with_items:
+    - "{{ graylog_slave_node }}"
   when: 
     - graylog_is_install | bool
 

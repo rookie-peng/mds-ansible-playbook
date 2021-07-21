@@ -50,6 +50,8 @@ spec:
           value: "graylog"
         - name: bootstrap.memory_lock
           value: "true"
+        - name: cluster.initial_master_nodes
+          value: "elasticsearch-0"
         ports:
         - containerPort: 9200
           name: http

@@ -4,21 +4,23 @@
   k8s:
     state: present
     definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
- with_items:
+  with_items:
    - es.sts.yml
    - es.svc.yml
 
-- name: graylog  | Create  mongodb 
-  k8s:
-    state: present
-    definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
- with_items:
+#- name: graylog  | Create  mongodb 
+#  community.kubernetes.helm:
+#    name: mongodb
+#    chart_ref: mongodb
+#    release_namespace: '{{ graylog_namespace }}'
+#    values_files:
+#      - values.yaml
 
 - name: graylog  | Create  graylog cluster 
   k8s:
     state: present
     definition: "{{ lookup('template', '{{ item }}') | from_yaml }}"
- with_items:
+  with_items:
    - graylog-master.sts.yml
    - graylog-slave.sts.yml
    - graylog-master.svc.yml

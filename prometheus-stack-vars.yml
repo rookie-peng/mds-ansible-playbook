@@ -1,4 +1,4 @@
-prometheus_stack_is_install: true
+prometheus_stack_is_install: false
 prometheus_ingress:
 prometheus_ac_ingress:
 grafana_ingress:
